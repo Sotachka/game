@@ -305,14 +305,20 @@ void Enemy::Interact(Player& p, std::string cmd)
     
     if(cmd == "attack") 
     {
-        int takenDamage;
-        hp -= takenDamage = p.weapon->damage; //отнимаем у врага то кол-во урона сколько есть у нашего оружия.
+        int takenDamage = 0;
+        takenDamage = p.weapon->damage - armor->defense; //запоминаем урон оружия игрока. Защита врага действует на урон оружия игрока.    
+        if(takenDamage > 0)
+        {
+            hp -= takenDamage; //наносим итоговый удар врагу с учетом его брони.
+        }
+        else 
+        { 
+            hp -= takenDamage = 1; 
+        }
         if (hp <= 0)
         {
-            std::cout << "Враг умер." << std::endl;
-            p.money += money;
-            std::cout << "Вы обыскали " << name << " и нашли " << money << " денег.\nТеперь у вас "<< p.money <<" денег."<< std::endl;
-            money = 0;
+            p.money += money;                
+            std::cout << "Враг умер.\n" << "Вы обыскали " << name << " и нашли " << money << " денег.\nТеперь у вас "<< p.money <<" денег."<< std::endl;           
             exist = false;
         }   
         else {
@@ -331,14 +337,13 @@ void Enemy::Interact(Player& p, std::string cmd)
                 {
                     p.hp -= takenDamage = 1; //это что бы не хилиться если броня больше урона (так во всех играх делается (ладно не во всех но в террариии такое точно есть))
                 }
-                std::cout << takenDamage; //выводим итог - то что нанесли.
-                
+                //std::cout << takenDamage; //выводим итог - то что нанесли.            
             }
             else 
             { 
-                std::cout << takenDamage; p.hp -= takenDamage;  //если брони нет то отнимаем столько сколько запомнили изначально и отнимаем от хпшек.
+                /*std::cout << takenDamage; */p.hp -= takenDamage;  //если брони нет то отнимаем столько сколько запомнили изначально и отнимаем от хпшек.
             }
-            std::cout << " урона.\nТеперь у вас " << p.hp << " очков здоровья" << std::endl;        
+            std::cout << takenDamage << " урона.\nТеперь у вас " << p.hp << " очков здоровья" << std::endl;        
         }
     }
 }
