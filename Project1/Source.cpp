@@ -309,6 +309,11 @@ void Enemy::Interact(Player& p, std::string cmd)
 	{
 		int takenDamage = 0;
 		takenDamage = p.weapon->damage - armor->defense;
+		int critChance = rand() & 100;
+		if (critChance <= weapon->critical)
+		{
+
+		}
 		if (takenDamage > 0)
 		{
 			hp -= takenDamage;
