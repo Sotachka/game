@@ -79,6 +79,33 @@ class Creature : public Entity
 public:
 	int hp, money;
 	const Item* armor, * weapon;
+	int CalculateDamage(int dmg, int crit)
+	{
+		int takenDamage = 0;
+		int critChance = rand() % 100;
+		if (armor != nullptr)
+		{
+			if (dmg > this->armor->defense)
+			{
+				takenDamage = dmg - this->armor->defense;
+			}
+			else
+			{
+				takenDamage = 1;
+			}
+		}
+		else
+		{
+			takenDamage += dmg;
+		}
+		if (critChance < crit)
+		{
+			takenDamage += crit;
+			std::cout << "КРИТ!" << std::endl;
+		}
+		std::cout << "Было нанесено " << takenDamage << " урона" << std::endl;
+		return takenDamage;
+	}
 };
 class Shop : public Entity
 {
@@ -189,7 +216,7 @@ public:
 					{
 						grid[i][j] = new Shop();
 					}
-					else if (chance < 30)
+					else if (chance < 5)
 					{
 						grid[i][j] = new Enemy();
 					}
@@ -304,60 +331,23 @@ void Shop::Interact(Player& p, std::string cmd)
 }
 void Enemy::Interact(Player& p, std::string cmd)
 {
-
 	if (cmd == "attack")
 	{
-		int takenDamage = 0;
-		takenDamage = p.weapon->damage - armor->defense;
-		int critChance = rand() % 100;
-		if (critChance < p.weapon->critical)
+		hp -= CalculateDamage(p.weapon->damage, p.weapon->critical);
+		if (hp <= 0)
 		{
-			takenDamage += p.weapon->critical;
-			std::cout << "КРИТИЧЕСКИЙ УРОН" << std::endl;
-		}
-		if (takenDamage > 0)
-		{
-			hp -= takenDamage;
+			std::cout << "Враг умер." << " Обыскав " << name << " вы нашли " << money << " денег" << std::endl;
+			p.money += money;
+			std::cout << "Теперь у вас " << money << " денег" << std::endl;
+			exist = false;
 		}
 		else
 		{
-			hp -= takenDamage = 1;
-		}
-		if (hp <= 0)
-		{
-			p.money += money;
-			std::cout << "Враг умер.\n" << "Вы обыскали " << name << " и нашли " << money << " денег.\nТеперь у вас " << p.money << " денег." << std::endl;
-			exist = false;
-		}
-		else {
-			std::cout << "Вы нанесли врагу " << takenDamage << " урона." << std::endl;
-			std::cout << "Враг наносит ответный удар и наносит вам ";
-			takenDamage = weapon->damage;
-			critChance = rand() % 100;
-			if (critChance < weapon->critical)
-			{
-				takenDamage += weapon->critical;
-				std::cout << "КРИТИЧЕСКИЕ ";
-			}
-			if (p.armor != nullptr)
-			{
-				takenDamage -= p.armor->defense;
-				if (takenDamage > 0)
-				{
-
-					p.hp -= takenDamage;
-				}
-				else
-				{
-					p.hp -= takenDamage = 1;
-				}
-			}
-			else
-			{
-				p.hp -= takenDamage;
-			}
-			std::cout << takenDamage << " урона.\nТеперь у вас " << p.hp << " очков здоровья" << std::endl;
-		}
+			std::cout << "Теперь у врага " << hp << " здоровья" << std::endl;
+			std::cout << "Враг атакует в ответ" << std::endl;
+			p.hp -= p.CalculateDamage(weapon->damage, weapon->critical);
+			std::cout << "Теперь у вас " << p.hp << " здоровья" << std::endl;
+		}	
 	}
 }
 void Map::ShowGrid(Player& player)
