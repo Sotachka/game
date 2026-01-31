@@ -189,7 +189,7 @@ public:
 					{
 						grid[i][j] = new Shop();
 					}
-					else if (chance < 5)
+					else if (chance < 30)
 					{
 						grid[i][j] = new Enemy();
 					}
@@ -309,10 +309,11 @@ void Enemy::Interact(Player& p, std::string cmd)
 	{
 		int takenDamage = 0;
 		takenDamage = p.weapon->damage - armor->defense;
-		int critChance = rand() & 100;
-		if (critChance <= weapon->critical)
+		int critChance = rand() % 100;
+		if (critChance < p.weapon->critical)
 		{
-
+			takenDamage += p.weapon->critical;
+			std::cout << "КРИТИЧЕСКИЙ УРОН" << std::endl;
 		}
 		if (takenDamage > 0)
 		{
@@ -332,6 +333,12 @@ void Enemy::Interact(Player& p, std::string cmd)
 			std::cout << "Вы нанесли врагу " << takenDamage << " урона." << std::endl;
 			std::cout << "Враг наносит ответный удар и наносит вам ";
 			takenDamage = weapon->damage;
+			critChance = rand() % 100;
+			if (critChance < weapon->critical)
+			{
+				takenDamage += weapon->critical;
+				std::cout << "КРИТИЧЕСКИЕ ";
+			}
 			if (p.armor != nullptr)
 			{
 				takenDamage -= p.armor->defense;
