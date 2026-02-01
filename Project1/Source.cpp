@@ -85,9 +85,9 @@ public:
 		int critChance = rand() % 100;
 		if (armor != nullptr)
 		{
-			if (dmg > this->armor->defense)
+			if (dmg > armor->defense)
 			{
-				takenDamage = dmg - this->armor->defense;
+				takenDamage = dmg - armor->defense;
 			}
 			else
 			{
@@ -273,19 +273,23 @@ public:
 		}
 		else
 		{
-			if (command == "info" && map.grid[row][col] != nullptr)
+			if (map.grid[row][col] != nullptr)
 			{
-				map.grid[row][col]->ShowInfo();
-			}
-			else if (command == "attack" || command == "sleep" || command == "buy")
-			{
-				map.grid[row][col]->Interact(*this, command);
-				if (map.grid[row][col] != nullptr && map.grid[row][col]->exist == false)
+				if (command == "info")
 				{
-					delete map.grid[row][col];
-					map.grid[row][col] = nullptr;
+					map.grid[row][col]->ShowInfo();
+				}
+				else if (command == "attack" || command == "sleep" || command == "buy")
+				{
+					map.grid[row][col]->Interact(*this, command);
+					if (map.grid[row][col]->exist == false)
+					{
+						delete map.grid[row][col];
+						map.grid[row][col] = nullptr;
+					}
 				}
 			}
+			
 		}
 	}
 };
@@ -338,7 +342,7 @@ void Enemy::Interact(Player& p, std::string cmd)
 		{
 			std::cout << "Враг умер." << " Обыскав " << name << " вы нашли " << money << " денег" << std::endl;
 			p.money += money;
-			std::cout << "Теперь у вас " << money << " денег" << std::endl;
+			std::cout << "Теперь у вас " << p.money << " денег" << std::endl;
 			exist = false;
 		}
 		else
