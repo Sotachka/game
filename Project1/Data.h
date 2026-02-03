@@ -55,10 +55,10 @@ namespace data
 		Item("Меховой плащ", 0,      6, 7, 0),
 	Item("Старая ношеная одежда", 0, 1, 1, 0)
 	};
-	const Item& GetWeapons(int i) {
+	inline const Item& GetWeapons(int i) {
 		return weapons[i];
 	}
-	const Item& GetArmors(int i) {
+	inline const Item& GetArmors(int i) {
 		return armors[i];
 	}
 }
