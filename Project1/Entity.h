@@ -1,7 +1,5 @@
 ﻿#pragma once
 #include "Data.h"
-#include <iostream>
-#include <string>
 class Player;
 class Entity
 {

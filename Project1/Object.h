@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "Entity.h"
-#include "Data.h"
 class Shop : public Entity
 {
 public:

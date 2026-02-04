@@ -3,7 +3,6 @@
 #include <iostream>
 #include <ctime>
 #include <string>
-class Player;
 int main()
 {
 	setlocale(LC_ALL, "RUS");
