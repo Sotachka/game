@@ -1,5 +1,6 @@
 ﻿#include "Map.h"
 #include "Player.h"
+#include "Controller.h"
 #include <iostream>
 #include <ctime>
 #include <string>
@@ -9,6 +10,7 @@ int main()
 	srand(time(0));
 	Map map;
 	Player player;
+	Controller controller;
 	map.FillGrid();
 	player.Spawn(map.grid);
 	map.ShowGrid(player);
@@ -21,8 +23,11 @@ int main()
 		}
 		else
 		{
-			player.Control(map);
+			controller.DisplayCommands(map, player);
+			controller.EnterCommands();
+			controller.Actions(map, player);
 			map.ShowGrid(player);
+
 		}
 	}
 	return 0;

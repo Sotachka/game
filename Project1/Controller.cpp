@@ -1,0 +1,54 @@
+﻿#include "Controller.h"
+#include "Player.h"
+void Controller::DisplayCommands(Map &map, Player &player)
+{
+	std::cout << "Комманды:\n1.left\n2.right\n3.up\n4.down\n5.info\n6.map" << std::endl;
+	if (map.grid[player.row][player.col] != nullptr)
+	{
+		map.grid[player.row][player.col]->Command();
+	}
+}
+void Controller::EnterCommands()
+{
+	drx = dry = 0;
+	std::cin >> command;
+}
+
+void Controller::Actions(Map& map, Player& player)
+{
+	if (command == "up" || command == "down" || command == "left" || command == "right")
+	{
+		if (command == "up") { drx = -1; }
+		else if (command == "down") { drx = 1; }
+		else if (command == "left") { dry = -1; }
+		else if (command == "right") { dry = 1; }
+		if (map.grid[player.row + drx][player.col + dry] != nullptr && map.grid[player.row + drx][player.col + dry]->sym == '+')
+		{
+			std::cout << "Тут гора!" << std::endl;
+		}
+		else
+		{
+			player.row += drx; player.col += dry;
+		}
+	}
+	else
+	{
+		if (map.grid[player.row][player.col] != nullptr)
+		{
+			if (command == "info")
+			{
+				map.grid[player.row][player.col]->ShowInfo();
+			}
+			else if (command == "attack" || command == "sleep" || command == "buy")
+			{
+				map.grid[player.row][player.col]->Interact(player, command);
+				if (map.grid[player.row][player.col]->exist == false)
+				{
+					delete map.grid[player.row][player.col];
+					map.grid[player.row][player.col] = nullptr;
+				}
+			}
+		}
+
+	}
+}
