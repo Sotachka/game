@@ -30,7 +30,7 @@ void Shop::ShowInfo()
 }
 void Shop::Command() 
 {
-	std::cout << "7.buy" << std::endl;
+	std::cout << ".buy" << std::endl;
 }
 void Shop::Interact(Player& p, std::string cmd)
 {
@@ -75,7 +75,7 @@ void Tavern::ShowInfo()
 }
 void Tavern::Command()
 {
-	std::cout << "7.sleep" << std::endl;
+	std::cout << ".sleep" << std::endl;
 }
 void Tavern::Interact(Player& p, std::string cmd)
 {

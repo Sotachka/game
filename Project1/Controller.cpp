@@ -1,11 +1,27 @@
 ﻿#include "Controller.h"
 #include "Player.h"
-void Controller::DisplayCommands(Map &map, Player &player)
+void Controller::DisplayCommands(Map& map, Player& player)
 {
-	std::cout << "Комманды:\n1.left\n2.right\n3.up\n4.down\n5.info\n6.map" << std::endl;
+	int ind = 1;
+	if (map.grid[player.row - 1][player.col] == nullptr || map.grid[player.row - 1][player.col]->sym != '+')
+	{
+		std::cout << ind++ << ".up" << std::endl;
+	}
+	if (map.grid[player.row + 1][player.col] == nullptr || map.grid[player.row + 1][player.col]->sym != '+')
+	{
+		std::cout << ind++ << ".down" << std::endl;
+	}
+	if (map.grid[player.row][player.col - 1] == nullptr || map.grid[player.row][player.col - 1]->sym != '+')
+	{
+		std::cout << ind++ << ".left" << std::endl;
+	}
+	if (map.grid[player.row][player.col + 1] == nullptr || map.grid[player.row][player.col + 1]->sym != '+')
+	{
+		std::cout << ind++ << ".right" << std::endl;
+	}
 	if (map.grid[player.row][player.col] != nullptr)
 	{
-		map.grid[player.row][player.col]->Command();
+		std::cout << ind++ << ".info\n" << ind++; map.grid[player.row][player.col]->Command();
 	}
 }
 void Controller::EnterCommands()
@@ -13,7 +29,6 @@ void Controller::EnterCommands()
 	drx = dry = 0;
 	std::cin >> command;
 }
-
 void Controller::Actions(Map& map, Player& player)
 {
 	if (command == "up" || command == "down" || command == "left" || command == "right")
@@ -49,6 +64,5 @@ void Controller::Actions(Map& map, Player& player)
 				}
 			}
 		}
-
 	}
 }

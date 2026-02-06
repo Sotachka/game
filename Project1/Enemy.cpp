@@ -14,7 +14,7 @@ void Enemy::ShowInfo()
 }
 void Enemy::Command()
 {
-	std::cout << "7.attack" << std::endl;
+	std::cout << ".attack" << std::endl;
 }
 void Enemy::Interact(Player& p, std::string cmd)
 {
