@@ -7,14 +7,14 @@ public:
 	Shop();
 	void Interact(Player& p, std::string cmd)override;
 	void ShowInfo() override;
-	void Command() override;	
+	void ShowCommand() override;	
 };
 class Tavern : public Entity
 {
 public:
 	Tavern();	
 	void ShowInfo() override;	
-	void Command()override;		
+	void ShowCommand()override;		
 	void Interact(Player& p, std::string cmd)override;	
 };
 class Mountain : public Entity

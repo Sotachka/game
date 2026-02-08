@@ -28,7 +28,7 @@ void Shop::ShowInfo()
 
 	}
 }
-void Shop::Command() 
+void Shop::ShowCommand() 
 {
 	std::cout << ".buy" << std::endl;
 }
@@ -73,14 +73,21 @@ void Tavern::ShowInfo()
 {
 	std::cout << "Добро пожаловать в таверну " << name << "!" << std::endl;
 }
-void Tavern::Command()
+void Tavern::ShowCommand()
 {
 	std::cout << ".sleep" << std::endl;
 }
 void Tavern::Interact(Player& p, std::string cmd)
+
 {
+
 	if (cmd == "sleep") {
-		p.hp = 100;
-		std::cout << "Ваше здоровье на высоте!" << std::endl;
+
+
+		SleepCommand* sCmd = new SleepCommand(&p);
+
+		sCmd->Execute();
+
 	}
+
 }

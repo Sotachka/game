@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Data.h"
+#include "Command.h"
 class Player;
 class Entity
 {
@@ -9,6 +10,6 @@ public:
 	bool exist;
 	Entity() { sym = ' '; exist = true; }
 	virtual void ShowInfo();
-	virtual void Command();
+	virtual void ShowCommand();
 	virtual void Interact(Player& p, std::string cmd);
 };
