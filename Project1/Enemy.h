@@ -6,6 +6,6 @@ class Enemy : public Creature
 public:
 	Enemy();
 	void ShowInfo() override;	
-	void Command()override;
+	void ShowCommand()override;
 	void Interact(Player& p, std::string cmd) override;
 };

@@ -5,18 +5,15 @@ class Command
 {
 public:	
 	~Command() {};
-	virtual void Execute() = 0;
+	virtual void Execute(Player* p, Entity *target) = 0;
 };
 class SleepCommand :public Command
 {
-	Player* player;
 public:
-	SleepCommand(Player* p){
-		player = p;
-	}
-	void Execute ()override
+	SleepCommand() {};
+	void Execute (Player*p, Entity* target)override
 	{
-		player->hp = 100;
+		p->hp = 100;
 		std::cout << "Ваше здоровье восстановлено." << std::endl;
 	}
 };

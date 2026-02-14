@@ -12,7 +12,7 @@ void Enemy::ShowInfo()
 	std::cout << "Тут враг " << name << "!" << "\nУ него " << hp << " очков здоровья, и " <<
 		money << " денег\nВ руках он держит " << weapon->name << "\nНа нем " << armor->name << std::endl;
 }
-void Enemy::Command()
+void Enemy::ShowCommand()
 {
 	std::cout << ".attack" << std::endl;
 }

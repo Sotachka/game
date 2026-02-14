@@ -21,7 +21,7 @@ void Controller::DisplayCommands(Map& map, Player& player)
 	}
 	if (map.grid[player.row][player.col] != nullptr)
 	{
-		std::cout << ind++ << ".info\n" << ind++; map.grid[player.row][player.col]->Command();
+		std::cout << ind++ << ".info\n" << ind++; map.grid[player.row][player.col]->ShowCommand();
 	}
 }
 void Controller::EnterCommands()
