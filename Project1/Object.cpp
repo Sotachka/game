@@ -78,10 +78,10 @@ void Tavern::ShowCommand()
 	std::cout << ".sleep" << std::endl;
 }
 void Tavern::Interact(Player& p, std::string cmd)
-
 {
 	if (cmd == "sleep") {
-		SleepCommand sCmd;
-		sCmd.Execute(&p, this);
+		SleepCommand* sCmd = new SleepCommand();
+		sCmd->Execute(&p, this);
 	}
+
 }
