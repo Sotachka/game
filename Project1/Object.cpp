@@ -77,11 +77,10 @@ void Tavern::ShowCommand()
 {
 	std::cout << ".sleep" << std::endl;
 }
-void Tavern::Interact(Player& p, std::string cmd)
+Command* Tavern::Interact(std::string cmd)
 {
-	if (cmd == "sleep") {
-		SleepCommand* sCmd = new SleepCommand();
-		sCmd->Execute(&p, this);
-	}
-
+	if (cmd == "command")
+	{
+	return new SleepCommand();
+	}	
 }

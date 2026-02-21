@@ -11,5 +11,5 @@ public:
 	Entity() { sym = ' '; exist = true; }
 	virtual void ShowInfo();
 	virtual void ShowCommand();
-	virtual void Interact(Player& p, std::string cmd);
+	virtual Command* Interact(std::string cmd) { return nullptr; };
 };

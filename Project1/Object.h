@@ -15,7 +15,7 @@ public:
 	Tavern();	
 	void ShowInfo() override;	
 	void ShowCommand()override;		
-	void Interact(Player& p, std::string cmd)override;	
+	Command* Interact(std::string cmd)override;
 };
 class Mountain : public Entity
 {

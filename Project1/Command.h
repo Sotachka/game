@@ -17,3 +17,19 @@ public:
 		std::cout << "Ваше здоровье восстановлено." << std::endl;
 	}
 };
+class BuyCommand : public Command 
+{
+public:
+	void Execute (Player*p, Entity* target)
+	{
+	
+	}
+};
+class AttackCommand : public Command
+{
+public:
+	void Execute (Player*p, Entity* target)override
+	{	
+
+	}
+};

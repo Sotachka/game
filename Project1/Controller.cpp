@@ -56,12 +56,17 @@ void Controller::Actions(Map& map, Player& player)
 			}
 			else if (command == "attack" || command == "sleep" || command == "buy")
 			{
-				map.grid[player.row][player.col]->Interact(player, command);
+				Command *cmd = map.grid[player.row][player.col]->Interact(command);
+				if (cmd != nullptr)
+				{
+					cmd->Execute(&player, map.grid[player.row][player.col]);
+					delete cmd;
+				}
 				if (map.grid[player.row][player.col]->exist == false)
 				{
 					delete map.grid[player.row][player.col];
 					map.grid[player.row][player.col] = nullptr;
-				}
+				} 
 			}
 		}
 	}
