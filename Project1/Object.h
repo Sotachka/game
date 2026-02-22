@@ -5,7 +5,7 @@ class Shop : public Entity
 public:
 	const Item* stock[5];
 	Shop();
-	void Interact(Player& p, std::string cmd)override;
+	Command* Interact(std::string cmd)override;
 	void ShowInfo() override;
 	void ShowCommand() override;	
 };
