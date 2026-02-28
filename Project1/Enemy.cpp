@@ -16,25 +16,11 @@ void Enemy::ShowCommand()
 {
 	std::cout << ".attack" << std::endl;
 }
-void Enemy::Interact(Player& p, std::string cmd)
+Command* Enemy::GetCommand(std::string cmd)
 {
 	if (cmd == "attack")
 	{
-		hp -= CalculateDamage(p.weapon->damage, p.weapon->critical);
-		if (hp <= 0)
-		{
-			std::cout << "Враг умер." << " Обыскав " << name << " вы нашли " << money << " денег" << std::endl;
-			p.money += money;
-			std::cout << "Теперь у вас " << p.money << " денег" << std::endl;
-			exist = false;
-		}
-		else
-		{
-			std::cout << "Теперь у врага " << hp << " здоровья" << std::endl;
-			std::cout << "Враг атакует в ответ" << std::endl;
-			p.hp -= p.CalculateDamage(weapon->damage, weapon->critical);
-			std::cout << "Теперь у вас " << p.hp << " здоровья" << std::endl;
-		}
+		return new AttackCommand();
 	}
 }
 

@@ -7,5 +7,6 @@ public:
 	Enemy();
 	void ShowInfo() override;	
 	void ShowCommand()override;
-	void Interact(Player& p, std::string cmd) override;
+	Command* 
+		(std::string cmd)override { return nullptr; };
 };

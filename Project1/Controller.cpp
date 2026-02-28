@@ -56,7 +56,7 @@ void Controller::Actions(Map& map, Player& player)
 			}
 			else if (command == "attack" || command == "sleep" || command == "buy")
 			{
-				Command *cmd = map.grid[player.row][player.col]->Interact(command);
+				Command *cmd = map.grid[player.row][player.col]->GetCommand(command);
 				if (cmd != nullptr)
 				{
 					cmd->Execute(&player, map.grid[player.row][player.col]);

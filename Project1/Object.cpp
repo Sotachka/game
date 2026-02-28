@@ -32,7 +32,7 @@ void Shop::ShowCommand()
 {
 	std::cout << ".buy" << std::endl;
 }
-void Shop::Interact(Player& p, std::string cmd)
+Command* Shop::GetCommand(std::string cmd)
 {
 	if (cmd == "buy") {
 		return new BuyCommand();
@@ -50,7 +50,7 @@ void Tavern::ShowCommand()
 {
 	std::cout << ".sleep" << std::endl;
 }
-Command* Tavern::Interact(std::string cmd)
+Command* Tavern::GetCommand(std::string cmd)
 {
 	if (cmd == "command")
 	{

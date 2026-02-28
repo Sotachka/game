@@ -28,7 +28,7 @@ public:
 class AttackCommand : public Command
 {
 public:
-	int Creature::CalculateDamage(int dmg, int crit, int armor)
+	int CalculateDamage(int dmg, int crit, int *armor)
 	{
 		int takenDamage = 0;
 		int critChance = rand() % 100;
