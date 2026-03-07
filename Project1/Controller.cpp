@@ -59,7 +59,7 @@ void Controller::Actions(Map& map, Player& player)
 				Command *cmd = map.grid[player.row][player.col]->GetCommand(command);
 				if (cmd != nullptr)
 				{
-					cmd->Execute(&player, map.grid[player.row][player.col]);
+					cmd->Execute(&player, &map.grid);
 					delete cmd;
 				}
 				if (map.grid[player.row][player.col]->exist == false)

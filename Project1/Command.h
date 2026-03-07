@@ -5,13 +5,13 @@ class Command
 {
 public:	
 	~Command() {};
-	virtual void Execute(Player* p, Entity *target) = 0;
+	virtual void Execute(Player* p, Entity * (&grid)[Map::HEIGHT][Map::WIDTH]) = 0;
 };
 class SleepCommand :public Command
 {
 public:
 	SleepCommand() {};
-	void Execute (Player*p, Entity* target)override
+	void Execute (Player*p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override
 	{
 		p->hp = 100;
 		std::cout << "Ваше здоровье восстановлено." << std::endl;
@@ -20,7 +20,7 @@ public:
 class BuyCommand : public Command 
 {
 public:
-	void Execute (Player*p, Entity* target)
+	void Execute (Player*p, Entity*(&grid)[Map::HEIGHT][Map::WIDTH])
 	{
 	
 	}
