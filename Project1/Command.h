@@ -1,17 +1,18 @@
 ﻿#pragma once
 #include "Player.h"
+#include "Enemy.h"
 class Entity;
 class Command
 {
 public:	
 	~Command() {};
-	virtual void Execute(Player* p, Entity * (&grid)[Map::HEIGHT][Map::WIDTH]) = 0;
+	virtual void Execute(Player*p, Entity*(&grid)[30][30]) = 0;
 };
 class SleepCommand :public Command
 {
 public:
 	SleepCommand() {};
-	void Execute (Player*p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override
+	void Execute (Player*p, Entity*(&grid)[30][30])override
 	{
 		p->hp = 100;
 		std::cout << "Ваше здоровье восстановлено." << std::endl;
@@ -20,9 +21,9 @@ public:
 class BuyCommand : public Command 
 {
 public:
-	void Execute (Player*p, Entity*(&grid)[Map::HEIGHT][Map::WIDTH])
+	void Execute (Player*p, Entity* (&grid)[30][30])override
 	{
-	
+		
 	}
 };
 class AttackCommand : public Command
@@ -55,10 +56,11 @@ public:
 		std::cout << "Было нанесено " << takenDamage << " урона" << std::endl;
 		return takenDamage;
 	}
-	void Execute (Player*p, Entity* target)override
+	void Execute (Player*p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override
 	{	
-		target->hp -= CalculateDamage(p->weapon->damage, p->weapon->critical, p->armor);
-		if (hp <= 0)
+		
+		grid[p->row][p->col]-> -= CalculateDamage(p->weapon->damage, p->weapon->critical, p->armor);
+		if (grid[p->row][p->col] <= 0)
 		{
 			std::cout << "Враг умер." << " Обыскав " << target->name << " вы нашли " << target->money << " денег" << std::endl;
 			p->money += target->money;
