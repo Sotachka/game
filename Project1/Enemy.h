@@ -7,6 +7,6 @@ public:
 	Enemy();
 	void ShowInfo() override;	
 	void ShowCommand()override;
-	Command* 
-		(std::string cmd)override { return nullptr; };
+	AttackCommand* (std::string cmd) override 
+	{ return nullptr; };
 };

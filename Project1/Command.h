@@ -29,7 +29,7 @@ public:
 class AttackCommand : public Command
 {
 public:
-	int CalculateDamage(int dmg, int crit, int *armor)
+	int CalculateDamage(int dmg, int crit, Item *armor)
 	{
 		int takenDamage = 0;
 		int critChance = rand() % 100;
@@ -58,20 +58,20 @@ public:
 	}
 	void Execute (Player*p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override
 	{	
-		
-		grid[p->row][p->col]-> -= CalculateDamage(p->weapon->damage, p->weapon->critical, p->armor);
-		if (grid[p->row][p->col] <= 0)
+		Creature* target = static_cast<Creature*>(grid[p->row][p->col]);
+		target->hp -= CalculateDamage(p->weapon->damage, p->weapon->critical, target->armor);
+		if (target->hp <= 0)
 		{
-			std::cout << "Враг умер." << " Обыскав " << target->name << " вы нашли " << target->money << " денег" << std::endl;
+			std::cout << "Враг умер." << " Обыскав " << grid[p->row][p->col]->name << " вы нашли " << target->money <<" денег" << std::endl;
 			p->money += target->money;
 			std::cout << "Теперь у вас " << p->money << " денег" << std::endl;
 			target->exist = false;
 		}
 		else
 		{
-			std::cout << "Теперь у врага " << hp << " здоровья" << std::endl;
+			std::cout << "Теперь у врага " << target->hp << " здоровья" << std::endl;
 			std::cout << "Враг атакует в ответ" << std::endl;
-			p->hp -= p->CalculateDamage(target->weapon->damage, target->weapon->critical);
+			p->hp -= CalculateDamage(target->weapon->damage, target->weapon->critical, p->armor);                                          
 			std::cout << "Теперь у вас " << p->hp << " здоровья" << std::endl;
 		}
 	}

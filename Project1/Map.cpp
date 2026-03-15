@@ -8,7 +8,6 @@ void Map::FillGrid()
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
-
 			if (i == 0 || i == HEIGHT - 1 || j == 0 || j == WIDTH - 1)
 			{
 				grid[i][j] = new Mountain;

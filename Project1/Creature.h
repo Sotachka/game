@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include "Entity.h"
-class Creature : public Entity
+class Creature : public Entity                                                                                                                                                                                   
 {
 public:
 	int hp, money;
-	const Item* armor, * weapon;
+	const Item* armor, *weapon;
 };

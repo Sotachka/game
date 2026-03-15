@@ -66,7 +66,7 @@ void Controller::Actions(Map& map, Player& player)
 				{
 					delete map.grid[player.row][player.col];
 					map.grid[player.row][player.col] = nullptr;
-				} 
+				}
 			}
 		}
 	}
