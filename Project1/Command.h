@@ -58,14 +58,14 @@ public:
 	}
 	void Execute (Player*p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override
 	{	
-		Creature* target = static_cast<Creature*>(grid[p->row][p->col]);
+		Creature* target = dynamic_cast<Creature*>(grid[p->row][p->col]);
 		target->hp -= CalculateDamage(p->weapon->damage, p->weapon->critical, target->armor);
 		if (target->hp <= 0)
 		{
 			std::cout << "Враг умер." << " Обыскав " << grid[p->row][p->col]->name << " вы нашли " << target->money <<" денег" << std::endl;
 			p->money += target->money;
 			std::cout << "Теперь у вас " << p->money << " денег" << std::endl;
-			target->exist = false;
+			target->exist = false; 
 		}
 		else
 		{
