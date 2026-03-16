@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Command.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Enemy.cpp" />
