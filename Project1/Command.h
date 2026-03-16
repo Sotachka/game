@@ -29,7 +29,7 @@ public:
 class AttackCommand : public Command
 {
 public:
-	int CalculateDamage(int dmg, int crit, Item *armor)
+	int CalculateDamage(int dmg, int crit, const Item *armor)
 	{
 		int takenDamage = 0;
 		int critChance = rand() % 100;
@@ -58,7 +58,7 @@ public:
 	}
 	void Execute (Player*p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override
 	{	
-		Creature* target = dynamic_cast<Creature*>(grid[p->row][p->col]);
+		Creature* target = static_cast<Creature*>(grid[p->row][p->col]);
 		target->hp -= CalculateDamage(p->weapon->damage, p->weapon->critical, target->armor);
 		if (target->hp <= 0)
 		{
