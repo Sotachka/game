@@ -1,5 +1,7 @@
 ﻿#include "Controller.h"
 #include "Player.h"
+#include "Map.h"
+#include "Command.h"
 void Controller::DisplayCommands(Map& map, Player& player)
 {
 	int ind = 1;

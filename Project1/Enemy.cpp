@@ -1,5 +1,6 @@
 ﻿#include "Enemy.h"
 #include "Player.h"
+#include "Command.h"
 Enemy::Enemy() {
 	sym = 'E';
 	name = data::adj[rand() % 15] + data::enemyNoun[rand() % 15];

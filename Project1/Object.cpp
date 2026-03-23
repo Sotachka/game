@@ -1,5 +1,6 @@
 ﻿#include "Object.h"
 #include "Player.h"
+#include "Command.h"
 Shop::Shop() {
 	sym = 'S'; name = data::adj[rand() % 15] + data::noun[rand() % 15];
 	for (int i = 0; i < 5; i++)
@@ -12,7 +13,7 @@ Shop::Shop() {
 		else if (index >= 10)
 		{
 			stock[i] = &data::GetArmors(index - 10);
-		}
+		}	
 	}
 }
 void Shop::ShowInfo() 

@@ -26,6 +26,6 @@ class AttackCommand : public Command
 {
 public:
 	int CalculateDamage(int dmg, int crit, const Item* armor);
-	void Execute(Player* p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])override;
+	void Execute(Player* p, Entity* (&grid)[30][30])override;
 	
 };

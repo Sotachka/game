@@ -1,6 +1,7 @@
 ﻿#pragma once	
-#include "Map.h"
 #include <string>
+class Map;
+class Player;
 class Controller
 {
 public:

@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Creature.h"
 class Player;
+
 class Enemy : public Creature
 {
 public:

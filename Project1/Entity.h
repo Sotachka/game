@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Data.h"
-#include "Command.h"
+class Command;
 class Player;
 class Entity
 {

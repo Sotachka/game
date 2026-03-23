@@ -9,7 +9,10 @@ void SleepCommand::Execute(Player* p, Entity* (&grid)[30][30])
 	p->hp = 100;
 	std::cout << "Ваше здоровье восстановлено." << std::endl;
 }
-
+void BuyCommand::Execute(Player* p, Entity* (&grid)[30][30])
+{
+	std::cout << "BuyCommand" << std::endl;
+}
 int AttackCommand::CalculateDamage(int dmg, int crit, const Item* armor)
 {
 	int takenDamage = 0;
@@ -37,9 +40,8 @@ int AttackCommand::CalculateDamage(int dmg, int crit, const Item* armor)
 	std::cout << "Было нанесено " << takenDamage << " урона" << std::endl;
 	return takenDamage;
 }
-void AttackCommand::Execute(Player* p, Entity* (&grid)[Map::HEIGHT][Map::WIDTH])
+void AttackCommand::Execute(Player* p, Entity* (&grid)[30][30])
 {
-	
 	Creature* target = dynamic_cast<Creature*>(grid[p->row][p->col]);
 	target->hp -= CalculateDamage(p->weapon->damage, p->weapon->critical, target->armor);
 	if (target->hp <= 0)
