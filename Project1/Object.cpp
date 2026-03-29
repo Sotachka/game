@@ -53,7 +53,7 @@ void Tavern::ShowCommand()
 }
 Command* Tavern::GetCommand(std::string cmd)
 {
-	if (cmd == "command")
+	if (cmd == "sleep")
 	{
 	return new SleepCommand();
 	}	
