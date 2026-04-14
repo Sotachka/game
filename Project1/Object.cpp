@@ -33,12 +33,6 @@ void Shop::ShowCommand()
 {
 	std::cout << ".buy" << std::endl;
 }
-Command* Shop::GetCommand(std::string cmd)
-{
-	if (cmd == "buy") {
-		return new BuyCommand();
-	}
-}
 Tavern::Tavern()
 {
 	sym = 'T'; name = data::adj[rand() % 15] + data::noun[rand() % 15];
@@ -51,10 +45,4 @@ void Tavern::ShowCommand()
 {
 	std::cout << ".sleep" << std::endl;
 }
-Command* Tavern::GetCommand(std::string cmd)
-{
-	if (cmd == "sleep")
-	{
-	return new SleepCommand();
-	}	
-}
+	

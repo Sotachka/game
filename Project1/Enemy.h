@@ -8,5 +8,4 @@ public:
 	Enemy();
 	void ShowInfo() override;	
 	void ShowCommand()override;
-	Command* GetCommand (std::string cmd) override;
 };

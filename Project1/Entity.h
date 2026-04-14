@@ -11,5 +11,4 @@ public:
 	Entity() { sym = ' '; exist = true; }
 	virtual void ShowInfo();
 	virtual void ShowCommand();
-	virtual Command* GetCommand(std::string cmd);
 };

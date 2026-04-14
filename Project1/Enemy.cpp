@@ -17,12 +17,5 @@ void Enemy::ShowCommand()
 {
 	std::cout << ".attack" << std::endl;
 }
-Command* Enemy::GetCommand(std::string cmd)
-{
-	if (cmd == "attack")
-	{
-		return new AttackCommand();
-	}
-}
 
 

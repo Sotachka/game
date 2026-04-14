@@ -1,7 +1,7 @@
 ﻿#include "Controller.h"
 #include "Player.h"
 #include "Map.h"
-#include "Command.h"
+#include "Command.h"	
 void Controller::DisplayCommands(Map& map, Player& player)
 {
 	int ind = 1;
@@ -35,7 +35,7 @@ void Controller::Actions(Map& map, Player& player)
 {
 	if (command == "up" || command == "down" || command == "left" || command == "right")
 	{
-		if (command == "up") { drx = -1; }
+		if (command == "up") { drx = -1;}
 		else if (command == "down") { drx = 1; }
 		else if (command == "left") { dry = -1; }
 		else if (command == "right") { dry = 1; }
@@ -56,18 +56,15 @@ void Controller::Actions(Map& map, Player& player)
 			{
 				map.grid[player.row][player.col]->ShowInfo();
 			}
-			else if (command == "attack" || command == "sleep" || command == "buy")
+			else 
 			{
-				Command *cmd = map.grid[player.row][player.col]->GetCommand(command);
-				if (cmd != nullptr)
+				for (int i = 0; i < 3; i++)
 				{
-					cmd->Execute(&player, map.grid);
-					delete cmd;
-				}
-				if (map.grid[player.row][player.col]->exist == false)
-				{
-					delete map.grid[player.row][player.col];
-					map.grid[player.row][player.col] = nullptr;
+					if (AvailableCommands[i]->commandName == command)
+					{
+						AvailableCommands[i]->Execute(&player, map.grid);
+						break;
+					}
 				}
 			}
 		}
