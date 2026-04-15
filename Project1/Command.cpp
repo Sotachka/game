@@ -41,7 +41,7 @@ void BuyCommand::Execute(Player* p, Entity* (&grid)[30][30])
 			}
 		}
 		else std::cout << "Этот предмет уже куплен!" << std::endl;
-	}	
+	}
 }
 int AttackCommand::CalculateDamage(int dmg, int crit, const Item* armor)
 {
@@ -88,4 +88,8 @@ void AttackCommand::Execute(Player* p, Entity* (&grid)[30][30])
 		p->hp -= CalculateDamage(target->weapon->damage, target->weapon->critical, p->armor);
 		std::cout << "Теперь у вас " << p->hp << " здоровья" << std::endl;
 	}
+}
+void InfoCommand::Execute(Player* p, Entity* (&grid)[30][30])
+{
+	grid[p->row][p->col]->ShowInfo();
 }

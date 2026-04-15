@@ -35,7 +35,7 @@ void Controller::Actions(Map& map, Player& player)
 {
 	if (command == "up" || command == "down" || command == "left" || command == "right")
 	{
-		if (command == "up") { drx = -1;}
+		if (command == "up") { drx = -1; }
 		else if (command == "down") { drx = 1; }
 		else if (command == "left") { dry = -1; }
 		else if (command == "right") { dry = 1; }
@@ -52,21 +52,15 @@ void Controller::Actions(Map& map, Player& player)
 	{
 		if (map.grid[player.row][player.col] != nullptr)
 		{
-			if (command == "info")
+			for (int i = 0; i < CMD_SIZE; i++)
 			{
-				map.grid[player.row][player.col]->ShowInfo();
-			}
-			else 
-			{
-				for (int i = 0; i < 3; i++)
+				if (AvailableCommands[i]->commandName == command)
 				{
-					if (AvailableCommands[i]->commandName == command)
-					{
-						AvailableCommands[i]->Execute(&player, map.grid);
-						break;
-					}
+					AvailableCommands[i]->Execute(&player, map.grid);
+					break;
 				}
 			}
+
 		}
 	}
 }

@@ -40,3 +40,12 @@ public:
 	int CalculateDamage(int dmg, int crit, const Item* armor);
 	void Execute(Player* p, Entity* (&grid)[30][30])override;
 };
+class InfoCommand : public Command 
+{
+public:
+	InfoCommand()
+	{
+		commandName = "info";
+	}
+	void Execute(Player* p, Entity* (&grid)[30][30]) override;
+};
