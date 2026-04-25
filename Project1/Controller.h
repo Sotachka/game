@@ -7,9 +7,8 @@ class Player;
 class Controller
 {
 public:
-	int drx = 0; int dry = 0;
 	std::string command;
-	static const int CMD_SIZE = 4;
+	static const int CMD_SIZE = 8;
 	Command* AvailableCommands[CMD_SIZE];
 	Controller() 
 	{
@@ -17,6 +16,10 @@ public:
 	AvailableCommands[1] = new BuyCommand;
 	AvailableCommands[2] = new AttackCommand;
 	AvailableCommands[3] = new InfoCommand;
+	AvailableCommands[4] = new MoveUpCommand;
+	AvailableCommands[5] = new MoveDownCommand;
+	AvailableCommands[6] = new MoveRightCommand;
+	AvailableCommands[7] = new MoveLeftCommand;
 	}
 	void DisplayCommands(Map& map, Player& p);
 	void EnterCommands();

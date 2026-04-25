@@ -28,39 +28,23 @@ void Controller::DisplayCommands(Map& map, Player& player)
 }
 void Controller::EnterCommands()
 {
-	drx = dry = 0;
 	std::cin >> command;
 }
 void Controller::Actions(Map& map, Player& player)
 {
-	if (command == "up" || command == "down" || command == "left" || command == "right")
+	for (int i = 0; i < CMD_SIZE; i++)
 	{
-		if (command == "up") { drx = -1; }
-		else if (command == "down") { drx = 1; }
-		else if (command == "left") { dry = -1; }
-		else if (command == "right") { dry = 1; }
-		if (map.grid[player.row + drx][player.col + dry] != nullptr && map.grid[player.row + drx][player.col + dry]->sym == '+')
+		if ( i < 4 && AvailableCommands[i]->commandName == command )
 		{
-			std::cout << "Тут гора!" << std::endl;
-		}
-		else
-		{
-			player.row += drx; player.col += dry;
-		}
-	}
-	else
-	{
-		if (map.grid[player.row][player.col] != nullptr)
-		{
-			for (int i = 0; i < CMD_SIZE; i++)
+			if (map.grid[player.row][player.col] != nullptr)
 			{
-				if (AvailableCommands[i]->commandName == command)
-				{
-					AvailableCommands[i]->Execute(&player, map.grid);
-					break;
-				}
+				AvailableCommands[i]->Execute(&player, map.grid);
 			}
-
+		}
+		else if (i >= 4 && AvailableCommands[i]->commandName == command)
+		{
+			AvailableCommands[i]->Execute(&player, map.grid);
 		}
 	}
 }
+

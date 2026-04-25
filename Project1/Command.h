@@ -49,3 +49,43 @@ public:
 	}
 	void Execute(Player* p, Entity* (&grid)[30][30]) override;
 };
+class MoveUpCommand	: public Command 
+{
+public:
+	int dry = -1;
+	MoveUpCommand() 
+	{
+		commandName = "up";
+	}
+	void Execute(Player* p, Entity* (&grid)[30][30]) override;
+};
+class MoveDownCommand : public Command
+{
+public:
+	int dry = 1;
+	MoveDownCommand()
+	{
+		commandName = "down";
+	}
+	void Execute(Player* p, Entity* (&grid)[30][30])override;
+};
+class MoveRightCommand : public Command
+{
+public:
+	int drx = 1;
+	MoveRightCommand()
+	{
+		commandName = "right";
+	}
+	void Execute(Player* p, Entity* (&grid)[30][30])override;
+};
+class MoveLeftCommand : public Command
+{
+public:
+	int drx = -1;
+	MoveLeftCommand()
+	{
+		commandName = "left";
+	}
+	void Execute(Player* p, Entity* (&grid)[30][30])override;
+};
