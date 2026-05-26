@@ -9,6 +9,17 @@ class Command
 public:	
 	~Command() {};
 	virtual void Execute(Player*p, Entity*(&grid)[30][30]) = 0;
+	int CanWeGo (Player* p, Entity* (&grid)[30][30], int& col, int& row)
+	{
+		if (grid[p->row][p->col] != nullptr && grid[p->row][p->col]->sym == '+')
+		{
+			std::cout << "Тут гора!" << std::endl;
+		}
+		else
+		{
+			p->col += drx;
+		}
+	}
 	std::string commandName;
 };
 class SleepCommand :public Command

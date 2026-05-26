@@ -128,6 +128,9 @@ void MoveRightCommand::Execute(Player* p, Entity* (&grid)[30][30])
 }
 void MoveLeftCommand::Execute(Player * p, Entity*(&grid)[30][30])
 {
+	p->col += 1;
+	Command::CanWeGo(p, grid, p->col, p->row);
+
 	if (grid[p->row][p->col + drx] != nullptr && grid[p->row][p->col + drx]->sym == '+')
 	{
 		std::cout << "Тут гора!" << std::endl;
