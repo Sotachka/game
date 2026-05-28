@@ -93,50 +93,31 @@ void InfoCommand::Execute(Player* p, Entity* (&grid)[30][30])
 {
 	grid[p->row][p->col]->ShowInfo();
 }
-void MoveUpCommand::Execute(Player* p, Entity* (&grid)[30][30])
+void Command::CanWeGo(Player* p, Entity* (&grid)[30][30], int& col, int& row, int drx, int dry)
 {
-	if (grid[p->row + dry][p->col] != nullptr && grid[p->row][p->col + dry]->sym == '+')
+	if (grid[p->row+dry][p->col+drx] != nullptr && grid[p->row+dry][p->col+drx]->sym == '+')
 	{
 		std::cout << "Тут гора!" << std::endl;
 	}
 	else
 	{
+		p->col += drx;
 		p->row += dry;
-	}	
+	}
+}
+void MoveUpCommand::Execute(Player* p, Entity* (&grid)[30][30])
+{
+	Command::CanWeGo(p, grid, p->col, p->row, drx, dry);
 }
 void MoveDownCommand::Execute(Player* p, Entity* (&grid)[30][30])
 {
-	if (grid[p->row + dry][p->col] != nullptr && grid[p->row + dry][p->col]->sym == '+')
-	{
-		std::cout << "Тут гора!" << std::endl;
-	}
-	else
-	{
-		p->row += dry;
-	}
+	Command::CanWeGo(p, grid, p->col, p->row, drx, dry);
 }
 void MoveRightCommand::Execute(Player* p, Entity* (&grid)[30][30])
 {
-	if (grid[p->row][p->col + drx] != nullptr && grid[p->row][p->col + drx]->sym == '+')
-	{
-		std::cout << "Тут гора!" << std::endl;
-	}
-	else
-	{
-		p->col += drx;
-	}
+	Command::CanWeGo(p, grid, p->col, p->row, drx, dry);
 }
 void MoveLeftCommand::Execute(Player * p, Entity*(&grid)[30][30])
 {
-	p->col += 1;
-	Command::CanWeGo(p, grid, p->col, p->row);
-
-	if (grid[p->row][p->col + drx] != nullptr && grid[p->row][p->col + drx]->sym == '+')
-	{
-		std::cout << "Тут гора!" << std::endl;
-	}
-	else
-	{
-		p->col += drx;
-	}
+	Command::CanWeGo(p, grid, p->col, p->row, drx, dry);
 }
